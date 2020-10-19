@@ -5,3 +5,9 @@ if (!function_exists('activeSegment')) {
         return request()->segment($segment) == $name ? $class : '';
     }
 }
+if (!function_exists('getUserId')) {
+    function getUserId()
+    {
+        return auth()->user()->id;
+    }
+}

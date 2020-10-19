@@ -37,6 +37,8 @@
                 </div>
             </section>
             <section class="content">
+                @include('layouts.partials.alert.success')
+                @include('layouts.partials.alert.error')
                 @yield('content')
                 <section />
 

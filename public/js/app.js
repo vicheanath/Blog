@@ -76043,10 +76043,6 @@ module.exports = function(module) {
  * building robust, powerful web applications using React + Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
-__webpack_require__(/*! admin-lte */ "./node_modules/admin-lte/dist/js/adminlte.min.js");
-
-__webpack_require__(/*! summernote */ "./node_modules/summernote/dist/summernote.js");
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -76165,8 +76161,8 @@ if (document.getElementById('example')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\PHP Project\Laravel\Blog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\PHP Project\Laravel\Blog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Web Development\PHP Development\Laravel\Blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Web Development\PHP Development\Laravel\Blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

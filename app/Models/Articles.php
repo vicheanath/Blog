@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Articles extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'thumbnail',
+        'title',
+        'body',
+        'slug',
+        'status'
+    ];
     public function users()
     {
         return $this->belongsTo(Users::class);

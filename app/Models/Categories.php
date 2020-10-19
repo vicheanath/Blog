@@ -12,4 +12,8 @@ class Categories extends Model
     {
         return $this->belongsTo(Users::class);
     }
+    public function article()
+    {
+        return $this->hasMany(Articles::class);
+    }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Post articles')
-@section('content-header', 'Post articles')
+@section('title', 'Edit articles')
+@section('content-header', 'Edit articles')
 
 @section('content')
 
@@ -45,8 +45,7 @@
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input  @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail"
-                            value="{{ old('thumbnail') }}">
+                        <input type="file" class="custom-file-input  @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail">
                         <label class="custom-file-label" for="customFile">Thumbnail</label>
                     </div>
                     @error('thumbnail')

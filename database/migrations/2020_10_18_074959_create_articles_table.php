@@ -20,10 +20,10 @@ class CreateArticlesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('thumbnail');
-            $table->string('title')->unique();
+            $table->string('title')->nullable();
             $table->text('body');
             $table->string('slug')->unique();
-            $table->boolean('active');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

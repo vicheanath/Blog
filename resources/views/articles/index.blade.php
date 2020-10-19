@@ -12,11 +12,11 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Category</th>
                         <th>Title</th>
                         <th>thumbnail</th>
                         <th>Status</th>
                         <th>Created_At</th>
-                        <th>Update_At</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -24,10 +24,10 @@
                     @foreach ($articles as $article)
                         <tr>
                             <th>{{ $article->id }}</th>
+                            <th>{{ $article->category_id }}</th>
                             <th>{{ $article->title }}</th>
-                            <th>{{ $article->thumbnail }}</th>
-                            <th>{{ $article->active }}</th>
-                            <th>{{ $article->created_at }}</th>
+                            <th ><img style="max-height: 70px" class="rounded" src="{{ Storage::url($article->thumbnail) }}" alt=""></th>
+                            <th>{{ $article->status }}</th>
                             <th>{{ $article->updated_at }}</th>
                             <th>
                                 <a class="btn btn-primary" href="{{ route('articles.edit', $article) }}"><i

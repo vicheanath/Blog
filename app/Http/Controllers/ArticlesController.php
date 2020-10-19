@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticlesStoreReques;
 use Illuminate\Http\Request;
 use App\Models\Articles;
+use App\Models\Categories;
 
 class ArticlesController extends Controller
 {
@@ -25,7 +27,11 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categories = array();
+        foreach (Categories::all() as $category) {
+            $categories[$category->id] = $category->name;
+        }
+        return view('articles.create')->with('categories', $categories);
     }
 
     /**
@@ -34,9 +40,26 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticlesStoreReques $request)
     {
-        //
+        $image_path = '';
+        if($request->hasFile('thumbnail')){
+            $image_path = $request->file('thumbnail')->store('thumbnail');
+        }
+        // dd($image_path);
+        $article = Articles::create([
+            'user_id' =>$request->userid,
+            'category_id' =>$request->category,
+            'thumbnail' =>$image_path,
+            'title' =>$request->title,
+            'body' =>$request->body,
+            'slug' =>$request->slug,
+            'status' =>$request->status
+        ]);
+        if (! $article){
+            return redirect()->back()->with('error','Sorry, there a problen while post article');
+        }
+        return redirect()->route('articles.index')->with('success','Articles, created successfully');
     }
 
     /**
