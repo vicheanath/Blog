@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticlesStoreReques;
+use App\Http\Requests\ArticlesUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Articles;
 use App\Models\Categories;
@@ -100,9 +101,15 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticlesUpdateRequest $request, Articles $article, $id)
     {
-        //
+        $article->userid = $request->userid;
+        $article->category = $request->category;
+        $article->thumbnail = $request->thumbnail;
+        $article->title = $request->title;
+        $article->body = $request->body;
+        $article->slug = $request->slug;
+        $article->status = $request->status;
     }
 
     /**

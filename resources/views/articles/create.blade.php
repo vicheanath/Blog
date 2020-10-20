@@ -22,8 +22,8 @@
                 </div>
                 <div class="form-group">
                     <label for="slug">slug</label>
-                    <input id="slug" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                        placeholder="slug" type="text" name="slug" value="{{ old('slug') }}">
+                    <input id="slug" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="slug"
+                        type="text" name="slug" value="{{ old('slug') }}">
                     @error('slug')
                     <span class="error invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -45,8 +45,8 @@
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input  @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail"
-                            value="{{ old('thumbnail') }}">
+                        <input type="file" class="custom-file-input  @error('thumbnail') is-invalid @enderror"
+                            id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}">
                         <label class="custom-file-label" for="customFile">Thumbnail</label>
                     </div>
                     @error('thumbnail')
@@ -57,13 +57,10 @@
                 </div>
                 <div class="form-group">
                     <label for="body">body</label>
-                    <textarea id="body" class="form-control" id="body" placeholder="body" type="text"
+
+                    <textarea class="textarea" placeholder="Place some text here" id="body"
                         name="body">{{ old('body') }}</textarea>
-                    @error('body')
-                    <span class="error invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+
                 </div>
                 <div class="form-group">
                     <label for="status">status</label>
@@ -75,8 +72,8 @@
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary float-right">Create</button>
-
-                    <button type="submit" class="btn btn-danger float-right" style="margin-right: 5px;">Cencel</button>
+                    <a href="{{ route('articles.index') }}" class="btn btn-danger float-right"
+                        style="margin-right: 5px;">Cencel</a>
                 </div>
             </div>
         </div>
