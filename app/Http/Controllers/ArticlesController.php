@@ -43,23 +43,23 @@ class ArticlesController extends Controller
     public function store(ArticlesStoreReques $request)
     {
         $image_path = '';
-        if($request->hasFile('thumbnail')){
+        if ($request->hasFile('thumbnail')) {
             $image_path = $request->file('thumbnail')->store('thumbnail');
         }
-        // dd($image_path);
+
         $article = Articles::create([
-            'user_id' =>$request->userid,
-            'category_id' =>$request->category,
-            'thumbnail' =>$image_path,
-            'title' =>$request->title,
-            'body' =>$request->body,
-            'slug' =>$request->slug,
-            'status' =>$request->status
+            'user_id' => $request->userid,
+            'category_id' => $request->category,
+            'thumbnail' => $image_path,
+            'title' => $request->title,
+            'body' => $request->body,
+            'slug' => $request->slug,
+            'status' => $request->status
         ]);
-        if (! $article){
-            return redirect()->back()->with('error','Sorry, there a problen while post article');
+        if (!$article) {
+            return redirect()->back()->with('error', 'Sorry, there a problen while post article');
         }
-        return redirect()->route('articles.index')->with('success','Articles, created successfully');
+        return redirect()->route('articles.index')->with('success', 'Articles, created successfully');
     }
 
     /**
@@ -80,8 +80,17 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        //
+        $article = Articles::findOrFail($id);
+        $categories = array();
+        foreach (Categories::all() as $category) {
+            $categories[$category->id] = $category->name;
+        }
+        return view('articles.edit')->with([
+            'articles' => $article,
+            'categories' => $categories
+        ]);
     }
 
     /**

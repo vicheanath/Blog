@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 
 Auth::routes();
@@ -24,5 +25,3 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('articles', 'ArticlesController');
     Route::resource('categories', 'CategoriesController');
 });
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

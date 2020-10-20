@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input id="title" class="form-control @error('title') is-invalid @enderror" id="title"
-                        placeholder="title" type="text" name="title" value="{{ old('title') }}">
+                        placeholder="title" type="text" name="title" value="{{ old('title',$articles->title) }}">
                     @error('title')
                     <span class="error invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label for="slug">slug</label>
                     <input id="slug" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                        placeholder="slug" type="text" name="slug" value="{{ old('slug') }}">
+                        placeholder="slug" type="text" name="slug" value="{{ old('slug',$articles->slug) }}">
                     @error('slug')
                     <span class="error invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label for="body">body</label>
                     <textarea id="body" class="form-control" id="body" placeholder="body" type="text"
-                        name="body">{{ old('body') }}</textarea>
+                        name="body">{{ old('body',$articles->body) }}</textarea>
                     @error('body')
                     <span class="error invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -66,8 +66,7 @@
                 </div>
                 <div class="form-group">
                     <label for="status">status</label>
-                    <select id="status" class="form-control @error('status') is-invalid @enderror" name="status">
-
+                    <select id="status" class="form-control @error('status',$articles->status) is-invalid @enderror" name="status">
                         <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Activie</option>
                         <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>InActivie</option>
                     </select>

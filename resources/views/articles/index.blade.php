@@ -26,13 +26,16 @@
                             <th>{{ $article->id }}</th>
                             <th>{{ $article->category_id }}</th>
                             <th>{{ $article->title }}</th>
-                            <th ><img style="max-height: 70px" class="rounded" src="{{ Storage::url($article->thumbnail) }}" alt=""></th>
-                            <th>{{ $article->status }}</th>
-                            <th>{{ $article->updated_at }}</th>
+                            <th><img style="max-height: 70px" class="rounded" src="{{ Storage::url($article->thumbnail) }}"
+                                    alt=""></th>
+                            <th><span
+                                    class="right badge badge-{{ status($article->status)['class'] }}">{{ status($article->status)['status'] }}</span>
+                            </th>
+                            <th>{{ date('d-m-Y', strtotime($article->created_at)) }}</th>
                             <th>
                                 <a class="btn btn-primary" href="{{ route('articles.edit', $article) }}"><i
                                         class="fas fa-edit"></i></a>
-                                <a class="btn btn-info" href="{{ route('articles.show', $article) }}"><i
+                                <a class="btn btn-success" href="{{ route('articles.show', $article) }}"><i
                                         class="fas fa-eye"></i></a>
                                 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                             </th>

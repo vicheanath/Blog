@@ -11,3 +11,19 @@ if (!function_exists('getUserId')) {
         return auth()->user()->id;
     }
 }
+if (!function_exists('status')) {
+    function status($status)
+    {
+        if ($status == '1') {
+            return $status = array(
+                'class'=>'success',
+                'status'=>'Public',
+            );
+        } else {
+            return $status = array(
+                'class'=>'danger',
+                'status'=>'Unpublic',
+            );
+        }
+    }
+}
