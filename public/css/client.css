@@ -4,3 +4,29 @@
   box-sizing: border-box;
 }
 
+.menu-item {
+  padding: 10px 40px;
+  margin: 5px 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  border: none;
+  background: #ddd;
+  border-radius: 20px;
+  color: #333;
+}
+
+.menu-item-wrapper.active {
+  padding: 5px;
+}
+
+.scroll-menu-arrow {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: #ccc;
+  border-radius: 50%;
+}
+

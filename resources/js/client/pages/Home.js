@@ -5,29 +5,32 @@ import { colors, fonts } from '../var'
 import { Link } from 'react-router-dom'
 import Article from './Article'
 
-const data = [
-    {
-        id: 1,
-        title: "«បន្ទាន់» ក្រសួងអប់រំប្រកាសបិទសាលា និងផ្អាកសកម្មភាពកីឡាគ្រប់ប្រភេទ",
-        image: 'https://cdn.sabay.com/cdn/media.sabay.com/media/sabay-news/Artroom-Photo/(2021)/SOCIAL(6)/CORONAVIRUS/5e2fc5237daa6_1580188920_medium.jpg',
-        date_time: '',
-    },
-    {
-        id: 2,
-        title: "ពីក្មេងស្រីឪពុកម្ដាយលែងលះគ្នាតាំងពីអាយុ ៧ឆ្នាំ ក្លាយជាអនុប្រធានាធិបតីដំបូងបង្អស់ក្នុងប្រវត្តិសាស្ត្រអាមេរិក",
-        image: 'https://cdn.sabay.com/cdn/media.sabay.com/media/PR-Photos/PR-Photos(2)/5fa79fc38affa_1604820900_medium.jpg',
-        date_time: '',
-    },
-    {
-        id: 2,
-        title: "ពីក្មេងស្រីឪពុកម្ដាយលែងលះគ្នាតាំងពីអាយុ ៧ឆ្នាំ ក្លាយជាអនុប្រធានាធិបតីដំបូងបង្អស់ក្នុងប្រវត្តិសាស្ត្រអាមេរិក",
-        image: 'https://cdn.sabay.com/cdn/media.sabay.com/media/PR-Photos/PR-Photos(2)/5fa79fc38affa_1604820900_medium.jpg',
-        date_time: '',
-    }
-]
+import API from './../config'
 
+const image = (url) => {
+    return 'http://127.0.0.1:8000/storage/' + url;
+}
 
 export default class Home extends Component {
+    constructor() {
+        super();
+        this.state = {
+            data: []
+        }
+    }
+    getArticles() {
+        API
+            .get(`articles`)
+            .then(response => {
+                this.setState({
+                    data: response.data
+                })
+            })
+    }
+
+    componentWillMount() {
+        this.getArticles();
+    }
     render() {
         const text_truncate = function (str, length, ending) {
             if (length == null) {
@@ -42,23 +45,22 @@ export default class Home extends Component {
                 return str;
             }
         };
-
         return (
             <Container>
                 <ArticleWrapper>
                     <Row>
                         {
-                            data.map((val, id) => {
+                            this.state.data.map((val, id) => {
                                 return (
                                     <Col key={id} xs={12} sm={6} md={4} lg={4}>
                                         <Link to={`article/${val.id}`}>
                                             <SlideCard>
-                                                <SlideCardImg image={val.image} />
+                                                <SlideCardImg image={image(val.thumbnail)} />
                                                 <Title>
                                                     {text_truncate(val.title, 70)}
                                                 </Title>
 
-                                                <div>{val.date_time}</div>
+                                                <div>{val.updated_at}</div>
                                             </SlideCard>
                                         </Link>
                                     </Col>

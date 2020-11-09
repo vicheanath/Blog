@@ -1,5 +1,32 @@
-*{
+* {
     margin: 0;
-    font-family: 'Kantumruy', sans-serif;
+    font-family: "Kantumruy", sans-serif;
     box-sizing: border-box;
+}
+.menu-item {
+    padding: 10px 40px;
+    margin: 5px 10px;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    background: #ddd;
+    border-radius: 20px;
+    color: #333;
+}
+.menu-item-wrapper.active {
+    // background: #333;
+    // border-radius: 20px;
+    // color:#fff;
+    padding: 5px;
+}
+.menu-item.active {
+    // border: 1px green solid;
+}
+
+.scroll-menu-arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: #ccc;
+    border-radius: 50%;
 }

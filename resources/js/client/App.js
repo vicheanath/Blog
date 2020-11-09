@@ -11,24 +11,24 @@ import Article from './pages/Article';
 import Category from './pages/Category';
 import Home from './pages/Home';
 
-const cat = [
-    {
-        id: 1,
-        name: 'Tech',
-        slug: 'tech'
-    },
-    {
-        id: 2,
-        name: 'Socail',
-        slug: 'socail'
-    }
-]
+import API from './config'
+
 
 function App() {
+    const [menu, setMenu] = React.useState([]);
+
+    React.useEffect(() => {
+        API
+            .get(`categories`)
+            .then(response => {
+                console.log(response)
+                setMenu(response.data)
+            })
+    },[])
     return (
         <React.Fragment>
             <Router>
-                <Header category={cat} />
+                <Header category={menu} />
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/article/:id" component={Article} />
