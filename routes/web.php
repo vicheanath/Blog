@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('articles', 'ArticlesController');
     Route::resource('categories', 'CategoriesController');
+    Route::get('/server', 'ServerInfoController@index')->name('serverinfo');
 });

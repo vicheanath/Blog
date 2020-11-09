@@ -7,8 +7,8 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-body">
-            <table class="table">
+        <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -28,8 +28,8 @@
                             <th>{{ $article->title }}</th>
                             <th><img style="max-height: 70px" class="rounded" src="{{ Storage::url($article->thumbnail) }}"
                                     alt=""></th>
-                            <th><span
-                                    class="right badge badge-{{ status($article->status)['class'] }}">{{ status($article->status)['status'] }}</span>
+                            <th>
+                                <span class="right badge badge-{{ status($article->status)['class'] }}">{{ status($article->status)['status'] }}</span>
                             </th>
                             <th>{{ date('d-m-Y', strtotime($article->created_at)) }}</th>
                             <th>

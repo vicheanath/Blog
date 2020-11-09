@@ -15,25 +15,27 @@ const cat = [
     {
         id: 1,
         name: 'Tech',
-        slug:'tech'
+        slug: 'tech'
     },
     {
         id: 2,
         name: 'Socail',
-        slug:'socail'
+        slug: 'socail'
     }
 ]
 
 function App() {
     return (
-        <Router>
-            <Switch>
+        <React.Fragment>
+            <Router>
                 <Header category={cat} />
-                <Route exact path="/" component={Home} />
-                <Route path="/article/:id" component={Article} />
-                <Route path="/category/:id" component={Category} />
-            </Switch>
-        </Router>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/article/:id" component={Article} />
+                    <Route path="/category/:id" component={Category} />
+                </Switch>
+            </Router>
+        </React.Fragment>
     );
 }
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ArticlesUpdateRequest extends FormRequest
+class CategoriesStoreReques extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,9 @@ class ArticlesUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        // $article_id = $this->route('articles');
         return [
-            'userid' => 'required',
-            'category' => 'required',
-            'thumbnail' => 'required|image',
-            'title' => 'required|string|max:500',
-            'body' => 'nullable|string',
-            'slug' => 'required|string|max:500',
+            'name' => 'required|string',
+            'thumnail' => 'required|image',
             'status' => 'required|boolean'
         ];
     }

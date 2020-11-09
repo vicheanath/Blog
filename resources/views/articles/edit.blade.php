@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <form action="{{ route('articles.update',$articles) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('articles.update', $articles) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="card">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriesStoreReques;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,22 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoriesStoreReques $request)
     {
-        //
+        $image_path = '';
+        if ($request->hasFile('thumbnail')) {
+            $image_path = $request->file('thumbnail')->store('thumbnail/categoryies');
+        }
+
+        $category = Categories::create([
+            'name' => $request->name,
+            'thumbnail' => $image_path,
+            'status' => $request->status
+        ]);
+        if (!$category) {
+            return redirect()->back()->with('error', 'Sorry, there a problen while post category');
+        }
+        return redirect()->route('categories.index')->with('success', 'categorys, created successfully');
     }
 
     /**

@@ -58,14 +58,13 @@
                 <div class="form-group">
                     <label for="body">body</label>
 
-                    <textarea class="textarea" placeholder="Place some text here" id="body"
-                        name="body">{{ old('body') }}</textarea>
+                    <textarea class="textarea form-control" style="height: 300px" placeholder="Place some text here"
+                        id="body" name="body">{{ old('body') }}</textarea>
 
                 </div>
                 <div class="form-group">
                     <label for="status">status</label>
                     <select id="status" class="form-control @error('status') is-invalid @enderror" name="status">
-
                         <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Activie</option>
                         <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>InActivie</option>
                     </select>

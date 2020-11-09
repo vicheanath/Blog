@@ -5,28 +5,15 @@
 
 @section('content')
 
-    <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input id="title" class="form-control @error('name') is-invalid @enderror" id="title"
-                        placeholder="title" type="text" name="title" value="{{ old('title') }}">
-                    @error('title')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category" class="form-control @error('name') is-invalid @enderror" name="category">
-                        <option>Text</option>
-                        <option>Text</option>
-                        <option>Text</option>
-                    </select>
-                    @error('category')
+                    <label for="name">name</label>
+                    <input id="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="name"
+                        type="text" name="name" value="{{ old('name') }}">
+                    @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -39,23 +26,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="detail">Detail</label>
-                    <textarea id="detail" class="textarea" id="detail" placeholder="detail" type="text"
-                        name="detail" >{{ old('detail') }}</textarea>
-                    @error('detail')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success ">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                    <label class="custom-control-label" for="customSwitch3">Status</label>
+                    <label for="status">status</label>
+                    <select id="status" class="form-control @error('status') is-invalid @enderror" name="status">
+                        <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Activie</option>
+                        <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>InActivie</option>
+                    </select>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary float-right">Create</button>
-
-                    <button type="submit" class="btn btn-danger float-right" style="margin-right: 5px;">Cencel</button>
+                    <a href="{{ route('categories.index') }}" class="btn btn-danger float-right"
+                        style="margin-right: 5px;">Cencel</a>
                 </div>
             </div>
         </div>

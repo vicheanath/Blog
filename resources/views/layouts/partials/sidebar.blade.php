@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <a href="{{route('serverinfo')}}" class="nav-link">
                                 <i class="nav-icon fas fa-server"></i>
                                 <p>Server Info</p>
                             </a>

@@ -7,6 +7,7 @@ use App\Http\Requests\ArticlesUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Articles;
 use App\Models\Categories;
+use Illuminate\Support\Facades\Storage;
 
 class ArticlesController extends Controller
 {
@@ -43,6 +44,7 @@ class ArticlesController extends Controller
      */
     public function store(ArticlesStoreReques $request)
     {
+        dd('asdfasdfasdf');
         $image_path = '';
         if ($request->hasFile('thumbnail')) {
             $image_path = $request->file('thumbnail')->store('thumbnail');
@@ -105,11 +107,20 @@ class ArticlesController extends Controller
     {
         $article->userid = $request->userid;
         $article->category = $request->category;
-        $article->thumbnail = $request->thumbnail;
         $article->title = $request->title;
         $article->body = $request->body;
         $article->slug = $request->slug;
         $article->status = $request->status;
+        if ($request->hasFile('thumbnail')) {
+            Storage::delete($article->thumbnail);
+            $image_path = $request->file('thumbnail')->store('thumbnail');
+        }
+
+        $article->thumbnail = $request->$image_path;
+        if (!$article->save()) {
+            return redirect()->back()->with('error', 'Sorry, there a problen while Update article');
+        }
+        return redirect()->route('articles.index')->with('success', 'Articles, Updated successfully');
     }
 
     /**
