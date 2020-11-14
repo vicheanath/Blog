@@ -3,13 +3,12 @@ import { Container, Row, Col } from 'styled-bootstrap-grid'
 import styled from 'styled-components'
 import { colors, fonts } from '../var'
 import { Link } from 'react-router-dom'
-import Article from './Article'
+import Slide from './../components/HomeComponents/Slide'
 
 import API from './../config'
 
-const image = (url) => {
-    return 'http://127.0.0.1:8000/storage/' + url;
-}
+import { pastImageUrl, cutStringTitle } from './../fuction'
+
 
 export default class Home extends Component {
     constructor() {
@@ -32,32 +31,23 @@ export default class Home extends Component {
         this.getArticles();
     }
     render() {
-        const text_truncate = function (str, length, ending) {
-            if (length == null) {
-                length = 100;
-            }
-            if (ending == null) {
-                ending = '...';
-            }
-            if (str.length > length) {
-                return str.substring(0, length - ending.length) + ending;
-            } else {
-                return str;
-            }
-        };
+
         return (
             <Container>
-                <ArticleWrapper>
+                <HomeWrapper>
+                    <Slide data={this.state.data} />
                     <Row>
+
+
                         {
                             this.state.data.map((val, id) => {
                                 return (
                                     <Col key={id} xs={12} sm={6} md={4} lg={4}>
                                         <Link to={`article/${val.id}`}>
                                             <SlideCard>
-                                                <SlideCardImg image={image(val.thumbnail)} />
+                                                <SlideCardImg image={pastImageUrl(val.thumbnail)} />
                                                 <Title>
-                                                    {text_truncate(val.title, 70)}
+                                                    {cutStringTitle(val.title, 70)}
                                                 </Title>
 
                                                 <div>{val.updated_at}</div>
@@ -68,7 +58,7 @@ export default class Home extends Component {
                             })
                         }
                     </Row>
-                </ArticleWrapper>
+                </HomeWrapper>
             </Container>
         )
     }
@@ -96,7 +86,7 @@ const SlideCardImg = styled.div`
     border-top-left-radius:10px;
     border-top-right-radius:10px;
 `;
-const ArticleWrapper = styled.div`
+const HomeWrapper = styled.div`
     margin-top:20px;
     a{
         text-decoration:none;
