@@ -26,8 +26,10 @@
                             <th>{{ $article->id }}</th>
                             <th>{{ $article->category_id }}</th>
                             <th>{{ $article->title }}</th>
-                            <th><img style="max-height: 70px" class="rounded" src="{{ Storage::url($article->thumbnail) }}"
-                                    alt=""></th>
+                            <th>
+                                
+                                <img style="max-height: 70px" class="rounded" src="{{ Storage::url($article->thumbnail) }}"alt="">
+                                </th>
                             <th>
                                 <span class="right badge badge-{{ status($article->status)['class'] }}">{{ status($article->status)['status'] }}</span>
                             </th>

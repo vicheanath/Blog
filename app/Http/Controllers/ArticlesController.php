@@ -44,7 +44,7 @@ class ArticlesController extends Controller
      */
     public function store(ArticlesStoreReques $request)
     {
-        dd('asdfasdfasdf');
+        // dd('asdfasdfasdf');
         $image_path = '';
         if ($request->hasFile('thumbnail')) {
             $image_path = $request->file('thumbnail')->store('thumbnail');
@@ -103,20 +103,25 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticlesUpdateRequest $request, Articles $article, $id)
+    public function update(ArticlesUpdateRequest $request, Articles $article)
     {
-        $article->userid = $request->userid;
-        $article->category = $request->category;
+        // dd($request);
+        $article->user_id = $request->userid;
+        $article->category_id = $request->category;
         $article->title = $request->title;
         $article->body = $request->body;
         $article->slug = $request->slug;
         $article->status = $request->status;
         if ($request->hasFile('thumbnail')) {
-            Storage::delete($article->thumbnail);
+            if ($article->thumbnail) {
+                Storage::delete($article->thumbnail);
+            }
+
             $image_path = $request->file('thumbnail')->store('thumbnail');
+            $article->thumbnail = $image_path;
         }
 
-        $article->thumbnail = $request->$image_path;
+
         if (!$article->save()) {
             return redirect()->back()->with('error', 'Sorry, there a problen while Update article');
         }

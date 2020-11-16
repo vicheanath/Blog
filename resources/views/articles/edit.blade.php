@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input  @error('thumbnail') is-invalid @enderror"
+                        <input type="file" value="{{ old('body', $articles->thumbnail) }}" class="custom-file-input  @error('thumbnail') is-invalid @enderror"
                             id="thumbnail" name="thumbnail">
                         <label class="custom-file-label" for="customFile">Thumbnail</label>
                     </div>

@@ -4,29 +4,83 @@ import styled from 'styled-components'
 import { colors, fonts } from './../../var'
 import { pastImageUrl, cutStringTitle } from './../../fuction'
 
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+import moment from 'moment'
+
 export default function Slide({ data }) {
+
     return (
         <Row>
             <Col md={7}>
-                <SlideBig>
-                    <SlideCardImg image={pastImageUrl('thumbnail/aJOZ8t2WROJzLxUXlOD21i1JUe3fObe0eztUOeMx.jpeg')} />
-                    <Title>
-                        វិធានការ១០នឹងអ្នកធ្វើចត្តាឡីស័កមិនត្រឹមត្រូវពិន័យ២០ម៉ឺនទៅ១លានរៀលវិធានការ១០
-                    </Title>
-                    <ShortDis>
-                    {cutStringTitle(`នៅក្នុងផ្ទះដាច់ដោយឡែកគ្រប់ពេលជារៀងរាល់ថ្ងៃ ក្នុងអំឡុងពេល១៤ថ្ងៃ (ដាច់ខាតដើរចេញក្រៅផ្ទះ ឬទីកន្លែងធ្វើចត្តាឡីស័ក)។
-                        តាមដានរោគសញ្ញានៃជំងឺ ដោយវាស់កម្តៅជារៀងរាល់ថ្ងៃ នៅពេលព្រឹក និងពេលល្ងាច។ បើកម្តៅលើពី៣៧.៥អង្សារ ឬមានរោគ`,150)}
-                    </ShortDis>
-                    <Author>ដោយ​៖​ វីជ្ជា <span></span> <p>ថ្ងៃនេះ ម៉ោង 15:36</p></Author>
-                </SlideBig>
+                <SliderWrapp>
+                    <OwlCarousel loop nav margin={5} items={1}>
+                        {
+                            data.map((val, id) => {
+                                return (
+                                    <div key={id} className='item'>
+                                        <SlideBig>
+                                            <SlideCardImg image={pastImageUrl(val.thumbnail)} />
+                                            <Title size={22}>
+                                                {val.title}
+                                            </Title>
+                                            <ShortDis>
+                                                {cutStringTitle(val.title, 150)}
+                                            </ShortDis>
+                                            <Author>ដោយ​៖​ វីជ្ជា <span></span> <p>{moment(val.created_at).format('dddd MMMM YYYY - h:mm a')}</p></Author>
+                                        </SlideBig>
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </OwlCarousel>
+                </SliderWrapp>
             </Col>
             <Col md={5}>
-                asdfsad
+                <WrapRight>
+                    {
+                        data.map((val, id) => {
+                            return (
+                                <RightSlide key={id}>
+                                    <Title size={15}>
+                                        {cutStringTitle(val.title, 50)}
+                                    </Title>
+                                    <ImageWrapp width='150px'>
+                                        <SlideCardImg image={pastImageUrl(val.thumbnail)} />
+                                    </ImageWrapp>
+                                </RightSlide>
+                            )
+                        })
+                    }
+                </WrapRight>
             </Col>
         </Row>
     )
 }
 
+const WrapRight = styled.div`
+    height:100%;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+`;
+const RightSlide = styled.div`
+    margin-bottom:15px;
+    justify-content:space-between;
+    width:100%;
+    display:flex;
+    flex-direction:row;
+`;
+const SliderWrapp = styled.div`
+    background: ${colors.white};
+    height:100%;
+    width:100%;
+    overflow:hidden;
+    display:flex;
+    flex-direction:row;
+`;
 
 const SlideBig = styled.div`
     background: ${colors.white};
@@ -48,19 +102,22 @@ const SlideCardImg = styled.div`
     border-top-left-radius:10px;
     border-top-right-radius:10px;
 `;
+const ImageWrapp = styled.div`
+    width: ${props => props.width ? props.width : '100%'};
+`;
 const Title = styled.h2`
     color: ${colors.black};
     padding-top:10px;
-    font-size:20px;
+    font-size:${props => props.size ? props.size + 'px' : '20px'};
     line-height:30px;
-    font-family:${fonts.fontfamily}
+    font-family:${fonts.fontfamily};
 `;
 const ShortDis = styled.span`
     color: ${colors.black};
     padding:0;
-    font-size:15px;
+    font-size:${props => props.size ? props.size + 'px' : '14px'};
     line-height:23px;
-    font-family:${fonts.fontfamily}
+    font-family:${fonts.fontfamily};
 `;
 const Author = styled.span`
     color: ${colors.black};

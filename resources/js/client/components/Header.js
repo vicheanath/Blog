@@ -90,6 +90,19 @@ const Ul = styled.div`
         display: flex;
         justify-content:flex-end;
     }
+    @media (max-width: 576px) {
+      position:absolute;
+      top: 4px;
+        background: #eee;
+        z-index: 10;
+        width: 100vw;
+        left: 0;
+            ul{
+                flex-direction:column;
+                display:flex;
+        }
+    }
+
 `;
 const Li = styled.li`
     cursor: pointer;

@@ -12,7 +12,8 @@ import Category from './pages/Category';
 import Home from './pages/Home';
 
 import API from './config'
-
+import moment from 'moment'
+moment.locale('km');
 
 function App() {
     const [menu, setMenu] = React.useState([]);

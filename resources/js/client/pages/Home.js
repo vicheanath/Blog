@@ -4,11 +4,10 @@ import styled from 'styled-components'
 import { colors, fonts } from '../var'
 import { Link } from 'react-router-dom'
 import Slide from './../components/HomeComponents/Slide'
-
+import moment from 'moment'
 import API from './../config'
 
 import { pastImageUrl, cutStringTitle } from './../fuction'
-
 
 export default class Home extends Component {
     constructor() {
@@ -37,8 +36,6 @@ export default class Home extends Component {
                 <HomeWrapper>
                     <Slide data={this.state.data} />
                     <Row>
-
-
                         {
                             this.state.data.map((val, id) => {
                                 return (
@@ -50,7 +47,7 @@ export default class Home extends Component {
                                                     {cutStringTitle(val.title, 70)}
                                                 </Title>
 
-                                                <div>{val.updated_at}</div>
+                                                <div>{moment(val.created_at).format('dddd MMMM YYYY - h:mm a')}</div>
                                             </SlideCard>
                                         </Link>
                                     </Col>
