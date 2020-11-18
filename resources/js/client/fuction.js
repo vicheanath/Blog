@@ -4,7 +4,7 @@ const pastImageUrl = (url) => {
     return 'http://127.0.0.1:8000/storage/' + url;
 }
 
-const cutStringTitle = function (str, length, ending) {
+const cutStringTitle =  (str, length, ending)=> {
     if (length == null) {
         length = 100;
     }

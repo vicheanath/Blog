@@ -1,32 +1,37 @@
 import React from 'react'
 import { Container, Row, Col } from 'styled-bootstrap-grid'
-import styled from 'styled-components'
+import { Title, Author } from './../styles'
+
+import { useParams } from 'react-router-dom'
+import moment from 'moment'
+import API from './../config'
+
+import Seo from './../seo'
+
+
 export default function Article() {
+    let { articleId } = useParams();
+
+    const [articles, setArticles] = React.useState([]);
+    React.useEffect(() => {
+        API
+            .post(`articles/${articleId}`)
+            .then(response => {
+                console.log(response);
+                setArticles(response.data)
+            })
+    }, [])
     return (
         <Container>
-                <HomeWrapper>
-                    <Slide data={this.state.data} />
-                    <Row>
-                        {
-                            this.state.data.map((val, id) => {
-                                return (
-                                    <Col key={id} xs={12} sm={6} md={4} lg={4}>
-                                        <Link to={`article/${val.id}`}>
-                                            <SlideCard>
-                                                <SlideCardImg image={pastImageUrl(val.thumbnail)} />
-                                                <Title>
-                                                    {cutStringTitle(val.title, 70)}
-                                                </Title>
-
-                                                <div>{moment(val.created_at).format('dddd MMMM YYYY - h:mm a')}</div>
-                                            </SlideCard>
-                                        </Link>
-                                    </Col>
-                                )
-                            })
-                        }
-                    </Row>
-                </HomeWrapper>
-            </Container>
+            <Seo data={articles}/>
+            <Row>
+                <Col>
+                    <Title>{articles.title}</Title>
+                    <Author>ដោយ​៖​ វីជ្ជា <span></span> <p>{moment(articles.created_at).format('dddd MMMM YYYY - h:mm a')}</p></Author>
+                    <div dangerouslySetInnerHTML={{ __html: articles.body }} >
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     )
 }

@@ -13,4 +13,16 @@ class ApiArticlesController extends Controller
         $articles = Articles::all();
         return json_decode($articles);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $article = Articles::find($id);
+        return response()->json($article);
+    }
 }

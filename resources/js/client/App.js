@@ -22,17 +22,16 @@ function App() {
         API
             .get(`categories`)
             .then(response => {
-                console.log(response)
                 setMenu(response.data)
             })
-    },[])
+    }, [])
     return (
         <React.Fragment>
             <Router>
                 <Header category={menu} />
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/article/:id" component={Article} />
+                    <Route path="/article/:articleId" component={Article} />
                     <Route path="/category/:id" component={Category} />
                 </Switch>
             </Router>

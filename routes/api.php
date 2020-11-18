@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/articles', 'Api\ApiArticlesController@index');
+Route::post('/articles/{id}', 'Api\ApiArticlesController@show');
 Route::get('/categories', 'Api\ApiCategoriesController@index');
 
 

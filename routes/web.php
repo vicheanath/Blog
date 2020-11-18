@@ -15,11 +15,9 @@ use PhpParser\Node\Expr\FuncCall;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{path?}', function ($path = null) {
     return view('app');
-});
-
-Auth::routes();
+})->where('path', '.*');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
